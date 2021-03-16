@@ -9,7 +9,6 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
     Connection connection = Util.getMysqlConnection();
-
 //    public UserDaoJDBCImpl() {
 //
 //    }
@@ -22,7 +21,6 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     public void dropUsersTable() {
@@ -53,10 +51,11 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
-    public List<User> getAllUsers() {
+    public List<User> getAllUsers() throws SQLException {
         List<User> users = new ArrayList<>();
 
         try (Statement stmt = connection.createStatement()) {
+            connection.setAutoCommit(false);
             ResultSet result = stmt.executeQuery("SELECT * FROM user");
 
             while (result.next()) {
@@ -66,9 +65,11 @@ public class UserDaoJDBCImpl implements UserDao {
                 user.setLastName(result.getString(3));
                 user.setAge(result.getByte(4));
                 users.add(user);
+                connection.commit();
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            connection.rollback();
         }
         return users;
     }
