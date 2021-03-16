@@ -28,6 +28,12 @@ public class User {
         this.age = age;
     }
 
+    @Override
+    public String toString() {
+//        return super.toString();
+        return "User с именем – " + name + " добавлен в базу данных";
+    }
+
     public Long getId() {
         return id;
     }
