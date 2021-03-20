@@ -12,6 +12,8 @@ import java.util.List;
 
 import static java.sql.DriverManager.getConnection;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) throws SQLException {
         // реализуйте алгоритм здесь
@@ -26,8 +28,9 @@ public class Main {
 //
 //
 //        }
-
         UserService userService = new UserServiceImpl();
+
+
         userService.createUsersTable();
 
         userService.saveUser("Фёдор", "Рекиш", (byte) 22);

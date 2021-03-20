@@ -9,9 +9,6 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
     private final Connection connection = Util.getMysqlConnection();
-//    public UserDaoJDBCImpl() {
-//
-//    }
 
     public void createUsersTable() throws SQLException {
         try (Statement stmt = connection.createStatement()) {
@@ -37,7 +34,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void saveUser(String name, String lastName, byte age) throws SQLException {
-        try (PreparedStatement stmt = connection.prepareStatement("INSERT user (name, last_name, age) VALUES (?, ?, ?)")) {
+        try (PreparedStatement stmt = connection.prepareStatement("INSERT user (name, last_name, age) VALUES (1, 2, 3)")) {
             connection.setAutoCommit(false);
             stmt.setString(1, name);
             stmt.setString(2, lastName);
