@@ -4,8 +4,12 @@ import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 import jm.task.core.jdbc.util.Util;
+import org.hibernate.Hibernate;
+import org.hibernate.metamodel.source.annotations.JPADotNames;
 
+import javax.persistence.Query;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -46,7 +50,6 @@ public class Main {
 
         userService.cleanUsersTable();
         userService.dropUsersTable();
-
-
+ResultSet res;
     }
 }
